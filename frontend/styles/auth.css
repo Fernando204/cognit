@@ -1,0 +1,236 @@
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background:
+        radial-gradient(
+            circle at 70% 50%,
+            rgba(74, 222, 128, 0.08),
+            transparent 35%
+        ),
+        #0b0b0b;
+
+    color: #fff;
+}
+
+header{
+    padding: 20px 40px;
+}
+
+footer{
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #a1a1a1;
+}
+
+.grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: -1;
+}
+/* LADO ESQUERDO */
+
+.left-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+/* LADO DIREITO */
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+}
+
+
+/* FORMULÁRIO */
+
+.login-form, .register-form {
+    width: 100%;
+    max-width: 380px;
+
+    position: absolute;
+
+    padding: 40px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 16px;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+a{
+    color: #4ade80;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        text-decoration 0.2s ease;
+}
+a:hover{
+    color: #5ee890;
+    text-decoration: underline;
+}
+
+/* TÍTULO */
+
+.login-form h2, .register-form h2 {
+    margin: 0 0 8px;
+
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+
+/* TEXTOS */
+
+.login-form p, .register-form p {
+    margin: 0 0 8px;
+
+    color: #a1a1a1;
+
+    font-size: 14px;
+}
+
+
+/* INPUT */
+
+.input-group{
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 48px;
+
+    margin-bottom: 22px;
+
+    padding: 0 15px;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 9px;
+
+    color: #fff;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* PLACEHOLDER */
+
+.input-group::placeholder {
+    color: #666;
+}
+
+
+/* FOCO */
+
+.input-group:focus {
+    background: rgba(0, 0, 0, 0.35);
+
+    border-color: #4ade80;
+
+    box-shadow:
+        0 0 0 3px rgba(74, 222, 128, 0.08),
+        0 0 20px rgba(74, 222, 128, 0.05);
+}
+
+
+/* BOTÃO */
+
+.login-form button, .register-form button {
+    width: 100%;
+    height: 48px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    background: #4ade80;
+
+    border: none;
+    border-radius: 9px;
+
+    color: #07140b;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.login-form button:hover, .register-form button:hover {
+    background: #5ee890;
+
+    box-shadow:
+        0 8px 25px rgba(74, 222, 128, 0.18);
+
+    transform: translateY(-1px);
+}
+
+
+.login-form button:active, .register-form button:active {
+    background: #22c55e;
+
+    transform: translateY(0);
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+    .login-page {
+        grid-template-columns: 1fr;
+    }
+
+    .left-side {
+        display: none;
+    }
+
+    .login-container {
+        padding: 24px;
+    }
+
+    .login-form {
+        padding: 30px 24px;
+    }
+}
