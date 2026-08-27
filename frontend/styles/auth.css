@@ -37,6 +37,16 @@ footer{
 }
 /* LADO ESQUERDO */
 
+.brand{
+    border-radius: 20px;
+}
+.brand-name{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:-0.01em;
+  }
+  .brand-name .accent{color:var(--green);}
 .left-side {
     display: flex;
     align-items: center;

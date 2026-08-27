@@ -1,0 +1,454 @@
+:root {
+    --black: #000000;
+    --black-2: #050505;
+    --black-3: #181818;
+  
+    --green: #00e676;
+    --dark-green: #008f4a;
+    --green-alt: #00c853;
+  
+    --ink: #f3f6f5;
+    --muted: #8fa098;
+    --muted-dim: #5c6864;
+  
+    --line: rgba(255, 255, 255, 0.08);
+    --line-strong: rgba(255, 255, 255, 0.14);
+  
+    --green-glow: rgba(0, 230, 118, 0.35);
+  
+    --sidebar-width: clamp(220px, 16vw, 280px);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    min-height: 100vh;
+  
+    background: var(--black);
+    color: var(--ink);
+  
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  
+    overflow-x: hidden;
+  }
+  
+  /* =========================
+     LAYOUT
+  ========================= */
+  
+  body {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+  
+  /* =========================
+     SIDEBAR
+  ========================= */
+  
+  .sidebar {
+    position: relative;
+  
+    width: 100%;
+    min-height: 100vh;
+  
+    background: var(--black-2);
+  
+    border-right: 1px solid var(--line);
+  
+    box-shadow:
+      15px 0 50px rgba(0, 200, 83, 0.08);
+  
+    z-index: 10;
+  }
+  
+  /* brilho interno na lateral */
+  
+  .sidebar::after {
+    content: "";
+  
+    position: absolute;
+  
+    top: 0;
+    right: -1px;
+  
+    width: 1px;
+    height: 100%;
+  
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--dark-green),
+      transparent
+    );
+  
+    opacity: 0.35;
+  }
+  
+  /* =========================
+     HEADER
+  ========================= */
+  
+  .sidebar header {
+    width: 100%;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    padding: 18px 10px;
+  }
+  
+  /* =========================
+     BRAND
+  ========================= */
+  
+  .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 10px;
+  
+    width: 100%;
+  }
+  
+  /* Logo */
+  
+  .brand img {
+    width: 38px;
+    height: 38px;
+  
+    object-fit: cover;
+  
+    border-radius: 12px;
+  
+    display: block;
+  
+    /* corta qualquer parte que ultrapasse o arredondamento */
+    overflow: hidden;
+  
+    filter:
+      drop-shadow(0 0 8px rgba(0, 230, 118, 0.18))
+      drop-shadow(0 0 20px rgba(0, 230, 118, 0.08));
+  
+    transition:
+      transform 0.25s ease,
+      filter 0.25s ease;
+  }
+  
+  .brand img:hover {
+    transform: scale(1.05);
+  
+    filter:
+      drop-shadow(0 0 10px rgba(0, 230, 118, 0.3))
+      drop-shadow(0 0 25px rgba(0, 230, 118, 0.12));
+  }
+  
+  /* Nome */
+  
+  .brand-name {
+    font-family: "Space Grotesk", sans-serif;
+  
+    font-weight: 700;
+    font-size: clamp(18px, 1.2vw, 22px);
+  
+    letter-spacing: -0.03em;
+  
+    color: var(--ink);
+  }
+  
+  .brand-name .accent {
+    color: var(--green);
+  }
+  
+  /* =========================
+     MAIN CONTENT
+  ========================= */
+  
+  .main-content {
+    min-width: 0;
+    min-height: 100vh;
+  
+    background:
+      radial-gradient(
+        circle at 0% 0%,
+        rgba(0, 230, 118, 0.035),
+        transparent 30%
+      ),
+      var(--black);
+  
+    padding: clamp(20px, 3vw, 50px);
+  }
+  
+  /* =========================
+     RESPONSIVIDADE
+  ========================= */
+  
+  /* Tablets */
+  
+  @media (max-width: 900px) {
+    :root {
+      --sidebar-width: 200px;
+    }
+  
+    .sidebar header {
+      padding: 24px 15px;
+    }
+  
+    .brand {
+      gap: 8px;
+    }
+  
+    .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+    }
+  
+    .brand-name {
+      font-size: 17px;
+    }
+  }
+  
+  /* Celular */
+  
+  @media (max-width: 650px) {
+    body {
+      display: block;
+    }
+  
+    .sidebar {
+      min-height: auto;
+      height: auto;
+  
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+  
+      box-shadow:
+        0 10px 35px rgba(0, 200, 83, 0.08);
+    }
+  
+    .sidebar::after {
+      top: auto;
+      bottom: -1px;
+      right: 0;
+  
+      width: 100%;
+      height: 1px;
+  
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--green),
+        transparent
+      );
+    }
+  
+    .sidebar header {
+      padding: 16px 20px;
+    }
+  
+    .brand {
+      justify-content: flex-start;
+    }
+  
+    .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+    }
+  
+    .main-content {
+      min-height: calc(100vh - 67px);
+  
+      padding: 20px;
+    }
+  }
+  
+  /* Celulares muito pequenos */
+  
+  @media (max-width: 380px) {
+    .sidebar header {
+      padding: 14px 16px;
+    }
+  
+    .brand img {
+      width: 30px;
+      height: 30px;
+  
+      border-radius: 9px;
+    }
+  
+    .brand-name {
+      font-size: 16px;
+    }
+  }
+
+  /* =========================
+   SIDEBAR — LAYOUT FLEX
+========================= */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* =========================
+   NAVEGAÇÃO
+========================= */
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 6px;
+
+  width: 100%;
+  padding: 20px 14px;
+
+  flex: 1;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  max-width: 210px;
+
+  padding: 11px 14px;
+
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+
+  color: var(--muted);
+  cursor: pointer;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nav-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+
+  stroke: currentColor;
+
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.nav-btn span {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nav-btn:hover {
+  background: rgba(0, 230, 118, 0.08);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+.nav-btn:hover svg {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 6px var(--green-glow));
+}
+
+.nav-btn.active {
+  background: rgba(0, 230, 118, 0.1);
+  color: var(--green);
+  box-shadow: inset 0 0 0 1px rgba(0, 230, 118, 0.25);
+}
+
+/* =========================
+   BOTÃO RECOLHER/EXPANDIR
+========================= */
+
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+  padding: 16px;
+
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--line);
+
+  color: var(--muted);
+  cursor: pointer;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(0, 230, 118, 0.08);
+  color: var(--green);
+}
+
+.sidebar-toggle svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+
+  transition: transform 0.3s ease;
+}
+
+/* =========================
+   ESTADO RECOLHIDO
+========================= */
+
+body.sidebar-collapsed {
+  grid-template-columns: 84px 1fr;
+}
+
+.sidebar.collapsed .brand-name,
+.sidebar.collapsed .nav-btn span,
+.sidebar.collapsed .sidebar-toggle span {
+  display: none;
+}
+
+.sidebar.collapsed .nav-btn {
+  justify-content: center;
+  padding: 11px;
+}
+
+.sidebar.collapsed .sidebar-toggle svg {
+  transform: rotate(180deg);
+}
+
+body.sidebar-collapsed .main-content,
+body.sidebar-collapsed .sidebar {
+  transition: none; /* evita "salto" durante o resize inicial */
+}
+
+.sidebar,
+.main-content {
+  transition: none;
+}
