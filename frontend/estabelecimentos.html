@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognit — Selecione um estabelecimento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/estabelecimentos.css">
+</head>
+
+<body class="est-page">
+
+    <div class="est-header">
+        <div class="brand" style="display:flex; align-items:center; gap:10px;">
+            <img src="assets/logo.png" alt="Cognit" width="34" height="34" style="border-radius: 9px;">
+            <span class="brand-name">COGN<span class="accent">I</span>T</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Ativar modo claro">
+                <span data-theme-icon aria-hidden="true">☀</span>
+                <span data-theme-label>Claro</span>
+            </button>
+            <button class="link-btn" id="logoutBtn" type="button" style="color:#a1a1a1;">Sair</button>
+        </div>
+    </div>
+
+    <div class="est-title">
+        <h1>Selecione um estabelecimento</h1>
+        <p>Escolha em qual empresa você deseja trabalhar agora.</p>
+    </div>
+
+    <div class="est-grid" id="estGrid">
+        <button class="est-card" type="button" data-est="matriz">
+            <span class="est-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18"></path>
+                    <path d="M5 21V7l8-4v18"></path>
+                    <path d="M19 21V11l-6-4"></path>
+                </svg>
+            </span>
+            <h3>Loja Matriz</h3>
+            <span>Sorocaba - SP</span>
+        </button>
+
+        <button class="est-card" type="button" data-est="filial-1">
+            <span class="est-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18"></path>
+                    <path d="M5 21V7l8-4v18"></path>
+                    <path d="M19 21V11l-6-4"></path>
+                </svg>
+            </span>
+            <h3>Filial Centro</h3>
+            <span>Sorocaba - SP</span>
+        </button>
+
+        <button class="est-card add-new" type="button" id="addEstBtn">
+            <span class="est-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                </svg>
+            </span>
+            <h3>Novo estabelecimento</h3>
+            <span>Cadastrar</span>
+        </button>
+    </div>
+
+    <script type="module" src="src/theme.js"></script>
+    <script type="module" src="src/estabelecimentos.js"></script>
+</body>
+
+</html>

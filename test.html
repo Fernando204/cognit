@@ -1,0 +1,4048 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cognit — Gestão inteligente</title>
+
+    <style>
+        :root {
+            --background: #f7f7f5;
+            --surface: #ffffff;
+
+            --text: #111820;
+            --muted: #6b7280;
+
+            --border: #d9dde2;
+
+            --navy: #071b33;
+            --blue: #1756a9;
+            --green: #27b85f;
+
+            --container: 1400px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: var(--background);
+            color: var(--text);
+
+            overflow-x: hidden;
+        }
+
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .header {
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 38px;
+
+            border-bottom: 1px solid var(--border);
+
+            background: var(--background);
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 20px;
+            font-weight: 650;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        /*
+            Substitua pelo SVG oficial da logo depois.
+        */
+
+        .brand-icon {
+            width: 28px;
+            height: 28px;
+
+            border-radius: 9px;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    var(--green)
+                );
+        }
+
+
+        .brand-icon::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 6px;
+
+            border: 1.5px solid white;
+            border-radius: 5px;
+        }
+
+
+        .login-button {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px;
+            border-radius: 10px;
+
+            transition: opacity 0.2s ease;
+        }
+
+
+        .login-button:hover {
+            opacity: 0.55;
+            background: lightgrey;
+        }
+
+
+        /* =========================================
+           GRID / LOGO SECTION
+        ========================================= */
+
+        .identity-section {
+            position: relative;
+
+            height: 830px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        /*
+            Malha quadriculada
+        */
+
+        /* .grid-background {
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+
+                linear-gradient(
+                    to right,
+                    #27b85f25 2px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 97, 216, 0.137) 2px,
+                    transparent 1px
+                );
+
+            background-size:
+                116px 110%,
+                110% 58px;
+
+        } */
+
+        .grid-background {
+    position: absolute;
+    inset: 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
+    grid-auto-rows: 58px;
+
+    overflow: hidden;
+}
+
+.grid-cell {
+    border-right: 2px solid #27b85f25;
+    border-bottom: 2px solid rgba(0, 97, 216, 0.137);
+
+    transition: 
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.grid-cell-1:hover {
+    background: rgba(39, 184, 95, 0.342);
+
+    box-shadow:
+        inset 0 0 30px rgba(39, 184, 95, 0.15);
+}
+
+.grid-cell-2:hover {
+    background: rgba(0, 60, 255, 0.377);
+
+    box-shadow:
+        inset 0 0 30px rgba(39, 184, 95, 0.15);
+}
+
+        /*
+            Linha horizontal superior mais forte
+        */
+
+        .identity-section::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 2px;
+
+            background: var(--navy);
+        }
+
+
+        /*
+            Logo central
+        */
+
+        .hero-logo {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            padding:
+                28px
+                70px;
+
+            background: var(--background);
+
+            border:
+                1px solid
+                rgba(7, 27, 51, 0.55);
+
+            border-radius: 26px;
+
+            box-shadow: 2px 5px 10px 0px black;
+            transition: all 0.2s;
+        }
+
+        .hero-logo:hover{
+            transform: scale(1.01);
+            box-shadow: 10px 10px 15px 5px black;
+
+        }
+
+
+        .hero-logo-icon {
+    width: 74px;
+    height: 74px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: transparent;
+    transition: all 0.2s;
+            box-shadow: 0px 3px 5px 1px black;
+
+
+}
+
+.hero-logo-icon:hover{
+            box-shadow: 0px 3px 5px 1px black;
+
+}
+
+
+.hero-logo-icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: inherit;
+}
+
+        .hero-logo-text {
+            font-size: 64px;
+
+            font-weight: 650;
+
+            letter-spacing: -3px;
+        }
+
+
+        /* =========================================
+           MAIN HERO
+        ========================================= */
+
+        .hero {
+
+            margin: 0 auto;
+
+            padding:
+                110px
+                138px
+                130px;
+
+                box-shadow: 0px -1px 20px 0px black;
+        }
+
+
+        .hero-content {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 120px;
+
+            align-items: center;
+        }
+
+
+        /* =========================================
+           LEFT CONTENT
+        ========================================= */
+
+        .hero-left {
+            max-width: 610px;
+        }
+
+
+        .hero-label {
+            margin-bottom: 24px;
+
+            color: var(--green);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.8px;
+        }
+
+
+        .hero-title {
+            font-size:
+                clamp(
+                    52px,
+                    5vw,
+                    82px
+                );
+
+            font-weight: 500;
+
+            line-height: 1.02;
+
+            letter-spacing: -4px;
+        }
+
+
+        .hero-title span {
+            color: var(--green);
+        }
+
+
+        .hero-description {
+            max-width: 490px;
+
+            margin-top: 34px;
+
+            color: var(--muted);
+
+            font-size: 18px;
+
+            line-height: 1.7;
+        }
+
+
+        .hero-actions {
+            display: flex;
+
+            gap: 14px;
+
+            margin-top: 42px;
+        }
+
+
+        .button-primary {
+            padding:
+                16px
+                25px;
+
+            background: var(--navy);
+
+            color: white;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .button-primary:hover {
+            background: var(--blue);
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .button-secondary {
+            padding:
+                16px
+                25px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            background: transparent;
+
+            transition:
+                border 0.2s ease;
+        }
+
+
+        .button-secondary:hover {
+            border-color: var(--navy);
+        }
+
+
+        /* =========================================
+           RIGHT VISUAL
+        ========================================= */
+
+        .hero-right {
+            position: relative;
+        }
+
+
+        .data-visual {
+            min-height: 500px;
+
+            padding: 40px;
+
+            border:
+                1px solid
+                var(--border);
+
+            background: var(--surface);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        /*
+            Top
+        */
+
+        .data-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding-bottom: 30px;
+
+            border-bottom:
+                1px solid
+                var(--border);
+        }
+
+
+        .data-title {
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .data-status {
+            color: var(--green);
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        /*
+            Revenue
+        */
+
+        .revenue {
+            margin-top: 45px;
+        }
+
+
+        .revenue-label {
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        .revenue-value {
+            margin-top: 10px;
+
+            font-size: 52px;
+
+            font-weight: 500;
+
+            letter-spacing: -2px;
+        }
+
+
+        .revenue-growth {
+            margin-top: 10px;
+
+            color: var(--green);
+
+            font-size: 14px;
+        }
+
+
+        /*
+            Chart
+        */
+
+        .chart {
+            position: relative;
+
+            height: 190px;
+
+            margin-top: 55px;
+
+            border-left:
+                1px solid
+                var(--border);
+
+            border-bottom:
+                1px solid
+                var(--border);
+        }
+
+
+        .chart-line {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            bottom: 0;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            gap: 16px;
+
+            padding:
+                0
+                12px;
+        }
+
+
+        .bar {
+            flex: 1;
+
+            background:
+                rgba(
+                    23,
+                    86,
+                    169,
+                    0.15
+                );
+
+            border-radius:
+                3px
+                3px
+                0
+                0;
+        }
+
+
+        .bar:nth-child(1) {
+            height: 30%;
+        }
+
+        .bar:nth-child(2) {
+            height: 42%;
+        }
+
+        .bar:nth-child(3) {
+            height: 38%;
+        }
+
+        .bar:nth-child(4) {
+            height: 56%;
+        }
+
+        .bar:nth-child(5) {
+            height: 48%;
+        }
+
+        .bar:nth-child(6) {
+            height: 72%;
+        }
+
+        .bar:nth-child(7) {
+            height: 92%;
+
+            background: var(--green);
+        }
+
+
+        /*
+            Floating metric
+        */
+
+        .floating-metric {
+            position: absolute;
+
+            right: -25px;
+            bottom: 35px;
+
+            padding:
+                20px
+                24px;
+
+            background: var(--navy);
+
+            color: white;
+
+            min-width: 200px;
+        }
+
+
+        .floating-metric small {
+            color: #94a3b8;
+
+            font-size: 11px;
+        }
+
+
+        .floating-metric strong {
+            display: block;
+
+            margin-top: 6px;
+
+            font-size: 28px;
+
+            font-weight: 500;
+        }
+
+
+        .floating-metric span {
+            display: block;
+
+            margin-top: 5px;
+
+            color: var(--green);
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (
+            max-width: 900px
+        ) {
+
+            .hero-content {
+                grid-template-columns: 1fr;
+
+                gap: 70px;
+            }
+
+
+            .identity-section {
+                height: 330px;
+            }
+
+
+            .hero-logo {
+                padding:
+                    20px
+                    40px;
+            }
+
+
+            .hero-logo-text {
+                font-size: 48px;
+            }
+
+        }
+
+
+        @media (
+            max-width: 600px
+        ) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+
+            .identity-section {
+                height: 280px;
+            }
+
+
+            .grid-background {
+                background-size:
+                    80px 100%,
+                    100% 55px;
+            }
+
+
+            .hero-logo {
+                padding:
+                    18px
+                    25px;
+
+                gap: 12px;
+            }
+
+
+            .hero-logo-icon {
+                width: 46px;
+                height: 46px;
+            }
+
+
+            .hero-logo-text {
+                font-size: 38px;
+            }
+
+
+            .hero {
+                padding:
+                    70px
+                    20px;
+            }
+
+
+            .hero-title {
+                letter-spacing: -2px;
+            }
+
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+
+            .button-primary,
+            .button-secondary {
+                text-align: center;
+            }
+
+
+            .floating-metric {
+                right: 0;
+            }
+
+
+
+        }
+
+       
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a
+            href="#"
+            class="brand"
+        >
+
+            <div class="brand-icon"></div>
+
+            <span>
+                Cognit
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="login-button"
+        >
+            Entrar
+        </a>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =================================
+             IDENTIDADE / LOGO
+        ================================== -->
+
+        <section
+            class="identity-section"
+        >
+
+            <div
+                class="grid-background"
+            >
+             <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+        
+        </div>
+
+        <script>
+            const grid =document.querySelector(".grid-background");
+            
+            for(let i = 0;i<280;i++){
+                const cell = document.createElement("div");
+                cell.classList.add("grid-cell");
+
+                if(i % 2 == 0){
+                    cell.classList.add("grid-cell-1");
+                }else{
+                    cell.classList.add("grid-cell-2");
+                }
+
+                grid.appendChild(cell)
+            }
+        </script>
+
+
+            <div
+                class="hero-logo"
+            >
+
+                <div
+                    class="hero-logo-icon">
+                    <img src="new-logo-2.png" alt="">
+                </div>
+
+
+                <span
+                    class="hero-logo-text"
+                >
+                    Cognit
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             HERO
+        ================================== -->
+
+        <section
+            class="hero"
+        >
+
+            <div
+                class="hero-content"
+            >
+
+
+                <!-- LEFT -->
+
+                <div
+                    class="hero-left"
+                >
+
+                    <div
+                        class="hero-label"
+                    >
+                        ERP inteligente
+                    </div>
+
+
+                    <h1
+                        class="hero-title"
+                    >
+
+                        Gestão que
+                        entende seu negócio.
+
+                        <span>
+                            E faz ele crescer.
+                        </span>
+
+                    </h1>
+
+
+                    <p
+                        class="hero-description"
+                    >
+
+                        O Cognit conecta as principais áreas
+                        da sua empresa em um único sistema.
+
+                        Tenha mais clareza, controle e
+                        inteligência para tomar decisões
+                        melhores todos os dias.
+
+                    </p>
+
+
+                    <div
+                        class="hero-actions"
+                    >
+
+                        <a
+                            href="#"
+                            class="button-primary"
+                        >
+                            Começar agora →
+                        </a>
+
+
+                        <a
+                            href="#"
+                            class="button-secondary"
+                        >
+                            Conhecer o Cognit
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RIGHT -->
+
+                <div
+                    class="hero-right"
+                >
+
+                    <div
+                        class="data-visual"
+                    >
+
+
+                        <div
+                            class="data-top"
+                        >
+
+                            <span
+                                class="data-title"
+                            >
+                                Visão financeira
+                            </span>
+
+
+                            <span
+                                class="data-status"
+                            >
+                                ● Atualizado
+                            </span>
+
+                        </div>
+
+
+
+                        <div
+                            class="revenue"
+                        >
+
+                            <div
+                                class="revenue-label"
+                            >
+                                Receita total
+                            </div>
+
+
+                            <div
+                                class="revenue-value"
+                            >
+                                R$ 245.430
+                            </div>
+
+
+                            <div
+                                class="revenue-growth"
+                            >
+                                ↑ 24,5% este mês
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="chart"
+                        >
+
+                            <div
+                                class="chart-line"
+                            >
+
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div
+                        class="floating-metric"
+                    >
+
+                        <small>
+                            Crescimento anual
+                        </small>
+
+
+                        <strong>
+                            +42%
+                        </strong>
+
+
+                        <span>
+                            ↑ Melhor resultado
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        s
+<section class="modules-section">
+    <div class="modules-grid"></div>
+
+    <!-- HEADER -->
+    <div class="modules-header">
+        <span class="section-eyebrow">ECOSSISTEMA COGNIT</span>
+
+        <h2>
+            Tudo o que sua empresa precisa.
+            <span>Em um único lugar.</span>
+        </h2>
+
+        <p>
+            Conheça os módulos que conectam dados, processos e pessoas
+            para tornar a gestão da sua empresa mais inteligente.
+        </p>
+    </div>
+
+
+    <!-- CARROSSEL -->
+    <div class="modules-carousel" id="modulesCarousel">
+
+        <!-- TOPO -->
+        <div class="carousel-top">
+
+            <span class="slide-number">
+                <span id="currentSlide">01</span>
+                <span class="number-divider">/</span>
+                <span>05</span>
+            </span>
+
+            <div class="carousel-progress">
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ÁREA DOS SLIDES -->
+        <div class="carousel-window">
+
+            <div
+                class="carousel-track"
+                id="carouselTrack"
+            >
+
+
+                <!-- =====================================================
+                     01 — FINANÇAS
+                ====================================================== -->
+
+                <article class="module-slide finance-slide">
+
+                    <div class="module-content">
+
+                        <div class="module-label">
+                            <span class="module-index">01</span>
+                            <span>FINANÇAS</span>
+                        </div>
+
+                        <h3>
+                            Controle financeiro
+                            <span>sem complicação.</span>
+                        </h3>
+
+                        <p>
+                            Acompanhe receitas, despesas, fluxo de caixa
+                            e indicadores financeiros em um único lugar.
+                            Tenha uma visão clara da saúde da sua empresa
+                            e tome decisões com mais segurança.
+                        </p>
+
+                        <div class="module-tags">
+                            <span>Fluxo de caixa</span>
+                            <span>Receitas</span>
+                            <span>Despesas</span>
+                            <span>Indicadores</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="module-visual finance-visual">
+
+                        <div class="visual-glow"></div>
+
+
+                        <div class="finance-card">
+
+                            <div class="card-header">
+                                <span>Visão financeira</span>
+
+                                <span class="card-status">
+                                    ● ATUALIZADO
+                                </span>
+                            </div>
+
+
+                            <div class="finance-value">
+
+                                <span>Saldo atual</span>
+
+                                <strong>
+                                    R$ 128.450
+                                </strong>
+
+                            </div>
+
+
+                            <div class="chart">
+
+                                <div class="chart-bars">
+
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="floating-card revenue-card"
+                        >
+
+                            <span>Receita</span>
+
+                            <strong>
+                                +18,4%
+                            </strong>
+
+                        </div>
+
+
+                        <div
+                            class="floating-card expense-card"
+                        >
+
+                            <span>Resultado mensal</span>
+
+                            <strong>
+                                +R$ 24.820
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     02 — ESTOQUE
+                ====================================================== -->
+
+                <article class="module-slide stock-slide">
+
+                    <div class="module-content">
+
+                        <div class="module-label">
+                            <span class="module-index">02</span>
+                            <span>ESTOQUE</span>
+                        </div>
+
+                        <h3>
+                            Seu estoque
+                            <span>sob controle.</span>
+                        </h3>
+
+                        <p>
+                            Gerencie produtos, entradas, saídas e
+                            movimentações com precisão. Saiba exatamente
+                            o que sua empresa possui e reduza perdas
+                            causadas pela falta de controle.
+                        </p>
+
+                        <div class="module-tags">
+                            <span>Produtos</span>
+                            <span>Movimentações</span>
+                            <span>Entradas</span>
+                            <span>Saídas</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="module-visual stock-visual">
+
+                        <div class="visual-glow"></div>
+
+
+                        <div class="stock-dashboard">
+
+                            <div class="stock-dashboard-header">
+
+                                <span>
+                                    Controle de estoque
+                                </span>
+
+                                <span class="stock-live">
+                                    ● EM TEMPO REAL
+                                </span>
+
+                            </div>
+
+
+                            <div class="stock-item">
+
+                                <div class="stock-icon">
+                                    01
+                                </div>
+
+                                <div class="stock-info">
+
+                                    <strong>
+                                        Produto A
+                                    </strong>
+
+                                    <span>
+                                        124 unidades
+                                    </span>
+
+                                </div>
+
+                                <div class="stock-bar">
+                                    <div
+                                        style="width: 78%"
+                                    ></div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="stock-item">
+
+                                <div class="stock-icon">
+                                    02
+                                </div>
+
+                                <div class="stock-info">
+
+                                    <strong>
+                                        Produto B
+                                    </strong>
+
+                                    <span>
+                                        42 unidades
+                                    </span>
+
+                                </div>
+
+                                <div class="stock-bar">
+                                    <div
+                                        style="width: 42%"
+                                    ></div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="stock-item">
+
+                                <div class="stock-icon">
+                                    03
+                                </div>
+
+                                <div class="stock-info">
+
+                                    <strong>
+                                        Produto C
+                                    </strong>
+
+                                    <span>
+                                        89 unidades
+                                    </span>
+
+                                </div>
+
+                                <div class="stock-bar">
+                                    <div
+                                        style="width: 61%"
+                                    ></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stock-floating">
+
+                            <span>
+                                Produtos cadastrados
+                            </span>
+
+                            <strong>
+                                1.248
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     03 — COLABORADORES
+                ====================================================== -->
+
+                <article class="module-slide employees-slide">
+
+                    <div class="module-content">
+
+                        <div class="module-label">
+                            <span class="module-index">03</span>
+                            <span>COLABORADORES</span>
+                        </div>
+
+                        <h3>
+                            Sua equipe,
+                            <span>mais conectada.</span>
+                        </h3>
+
+                        <p>
+                            Centralize informações dos colaboradores,
+                            organize permissões e mantenha controle sobre
+                            quem pode acessar cada área da sua empresa.
+                        </p>
+
+                        <div class="module-tags">
+                            <span>Equipe</span>
+                            <span>Permissões</span>
+                            <span>Acessos</span>
+                            <span>Gestão</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="module-visual employees-visual">
+
+                        <div class="visual-glow"></div>
+
+
+                        <div class="team-card">
+
+                            <div class="team-header">
+
+                                <span>
+                                    Colaboradores
+                                </span>
+
+                                <strong>
+                                    24 ativos
+                                </strong>
+
+                            </div>
+
+
+                            <div class="employee-list">
+
+
+                                <div class="employee">
+
+                                    <div
+                                        class="employee-avatar avatar-one"
+                                    >
+                                        M
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Mariana Silva
+                                        </strong>
+
+                                        <span>
+                                            Financeiro
+                                        </span>
+
+                                    </div>
+
+                                    <div
+                                        class="permission-dot"
+                                    ></div>
+
+                                </div>
+
+
+
+                                <div class="employee">
+
+                                    <div
+                                        class="employee-avatar avatar-two"
+                                    >
+                                        R
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Rafael Costa
+                                        </strong>
+
+                                        <span>
+                                            Estoque
+                                        </span>
+
+                                    </div>
+
+                                    <div
+                                        class="permission-dot"
+                                    ></div>
+
+                                </div>
+
+
+
+                                <div class="employee">
+
+                                    <div
+                                        class="employee-avatar avatar-three"
+                                    >
+                                        A
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Ana Martins
+                                        </strong>
+
+                                        <span>
+                                            Administrativo
+                                        </span>
+
+                                    </div>
+
+                                    <div
+                                        class="permission-dot"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     04 — COGNIT SCORE
+                ====================================================== -->
+
+                <article class="module-slide score-slide">
+
+                    <div class="module-content">
+
+                        <div class="module-label">
+                            <span class="module-index">04</span>
+                            <span>COGNIT SCORE</span>
+                        </div>
+
+                        <h3>
+                            Entenda a saúde
+                            <span>do seu negócio.</span>
+                        </h3>
+
+                        <p>
+                            Transforme os dados da sua empresa em
+                            indicadores claros. O Cognit Score ajuda você
+                            a acompanhar o desempenho do negócio e
+                            identificar pontos que precisam de atenção.
+                        </p>
+
+                        <div class="module-tags">
+                            <span>Saúde financeira</span>
+                            <span>Indicadores</span>
+                            <span>Análises</span>
+                            <span>Performance</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="module-visual score-visual">
+
+                        <div class="visual-glow"></div>
+
+
+                        <div class="score-circle">
+
+                            <svg viewBox="0 0 200 200">
+
+                                <defs>
+
+                                    <linearGradient
+                                        id="scoreGradient"
+                                        x1="0%"
+                                        y1="0%"
+                                        x2="100%"
+                                        y2="100%"
+                                    >
+
+                                        <stop
+                                            offset="0%"
+                                            stop-color="#1756a9"
+                                        />
+
+                                        <stop
+                                            offset="100%"
+                                            stop-color="#27b85f"
+                                        />
+
+                                    </linearGradient>
+
+                                </defs>
+
+
+                                <circle
+                                    cx="100"
+                                    cy="100"
+                                    r="80"
+                                    class="score-bg"
+                                />
+
+                                <circle
+                                    cx="100"
+                                    cy="100"
+                                    r="80"
+                                    class="score-progress"
+                                />
+
+                            </svg>
+
+
+                            <div class="score-content">
+
+                                <span>
+                                    COGNIT SCORE
+                                </span>
+
+                                <strong>
+                                    847
+                                </strong>
+
+                                <small>
+                                    Excelente
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="score-data-card">
+
+                            <span>
+                                Saúde da empresa
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    +12%
+                                </strong>
+
+                                <small>
+                                    este mês
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     05 — API
+                ====================================================== -->
+
+                <article class="module-slide api-slide">
+
+                    <div class="module-content">
+
+                        <div class="module-label">
+                            <span class="module-index">05</span>
+                            <span>API</span>
+                        </div>
+
+                        <h3>
+                            O Cognit conectado
+                            <span>ao seu sistema.</span>
+                        </h3>
+
+                        <p>
+                            Utilize nossa API para integrar os dados da
+                            sua empresa com outros sistemas, aplicações e
+                            ferramentas. Você não precisa ficar limitado
+                            apenas à plataforma.
+                        </p>
+
+                        <div class="module-tags">
+                            <span>Integrações</span>
+                            <span>API Keys</span>
+                            <span>Dados</span>
+                            <span>Desenvolvedores</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="module-visual api-visual">
+
+                        <div class="visual-glow"></div>
+
+
+                        <div class="api-window">
+
+                            <div class="api-header">
+
+                                <div class="api-dots">
+
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+
+                                </div>
+
+                                <span>
+                                    API REQUEST
+                                </span>
+
+                            </div>
+
+
+                            <div class="code">
+
+                                <p>
+                                    <span class="code-method">
+                                        GET
+                                    </span>
+
+                                    <span class="code-url">
+                                        /api/v1/finance
+                                    </span>
+                                </p>
+
+
+                                <p class="code-line">
+                                    {
+                                </p>
+
+                                <p
+                                    class="code-line indent"
+                                >
+                                    "status":
+                                    <span>
+                                        "success"
+                                    </span>,
+                                </p>
+
+                                <p
+                                    class="code-line indent"
+                                >
+                                    "data": {
+                                </p>
+
+                                <p
+                                    class="code-line double-indent"
+                                >
+                                    "score":
+                                    <span>
+                                        847
+                                    </span>
+                                </p>
+
+                                <p
+                                    class="code-line indent"
+                                >
+                                    }
+                                </p>
+
+                                <p class="code-line">
+                                    }
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="api-status">
+
+                            <span
+                                class="api-status-dot"
+                            ></span>
+
+                            API ONLINE
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTROLES -->
+        <div class="carousel-bottom">
+
+            <div class="carousel-controls">
+
+                <button
+                    class="carousel-button"
+                    id="prevButton"
+                    aria-label="Módulo anterior"
+                >
+                    ←
+                </button>
+
+
+                <button
+                    class="carousel-button"
+                    id="nextButton"
+                    aria-label="Próximo módulo"
+                >
+                    →
+                </button>
+
+            </div>
+
+
+            <div
+                class="carousel-indicators"
+                id="carouselIndicators"
+            >
+
+                <button
+                    class="indicator active"
+                    data-slide="0"
+                ></button>
+
+                <button
+                    class="indicator"
+                    data-slide="1"
+                ></button>
+
+                <button
+                    class="indicator"
+                    data-slide="2"
+                ></button>
+
+                <button
+                    class="indicator"
+                    data-slide="3"
+                ></button>
+
+                <button
+                    class="indicator"
+                    data-slide="4"
+                ></button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =====================================================
+   COGNIT COLORS
+===================================================== */
+
+:root {
+    --blue: #1756a9;
+    --green: #27b85f;
+
+    --blue-soft: rgba(23, 86, 169, 0.12);
+    --blue-medium: rgba(23, 86, 169, 0.28);
+    --blue-glow: rgba(23, 86, 169, 0.38);
+
+    --green-soft: rgba(39, 184, 95, 0.12);
+    --green-medium: rgba(39, 184, 95, 0.28);
+    --green-glow: rgba(39, 184, 95, 0.38);
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.modules-section {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 140px 8%;
+
+    background: var(--background);
+}
+
+
+.modules-grid {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.35;
+
+    background-image:
+        linear-gradient(
+            to right,
+            var(--border-color) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            var(--border-color) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            black 15%,
+            black 85%,
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.modules-header {
+    position: relative;
+
+    max-width: 850px;
+
+    margin-bottom: 80px;
+}
+
+
+.section-eyebrow {
+    display: block;
+
+    margin-bottom: 24px;
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+
+    color: var(--green);
+}
+
+
+.modules-header h2 {
+    margin: 0;
+
+    font-size:
+        clamp(
+            2.8rem,
+            6vw,
+            5.5rem
+        );
+
+    line-height: 0.95;
+
+    letter-spacing: -0.05em;
+
+    color: var(--text-primary);
+}
+
+
+.modules-header h2 span {
+    display: block;
+
+    color: var(--text-secondary);
+}
+
+
+.modules-header p {
+    max-width: 620px;
+
+    margin-top: 28px;
+
+    font-size: 1.05rem;
+
+    line-height: 1.7;
+
+    color: var(--text-secondary);
+}
+
+
+/* =====================================================
+   CAROUSEL
+===================================================== */
+
+.modules-carousel {
+    position: relative;
+
+    border:
+        1px solid
+        var(--border-color);
+
+    border-radius: 20px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--surface) 88%,
+            transparent
+        );
+
+    backdrop-filter: blur(20px);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 40px 100px
+        rgba(0, 0, 0, 0.18);
+}
+
+
+/* =====================================================
+   TOP
+===================================================== */
+
+.carousel-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 22px 28px;
+
+    border-bottom:
+        1px solid
+        var(--border-color);
+}
+
+
+.slide-number {
+    display: flex;
+
+    gap: 8px;
+
+    font-size: 0.8rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    color: var(--text-primary);
+}
+
+
+.number-divider {
+    color: var(--text-secondary);
+}
+
+
+.carousel-progress {
+    width: 220px;
+}
+
+
+.progress-bar {
+    width: 100%;
+
+    height: 3px;
+
+    background:
+        var(--border-color);
+
+    overflow: hidden;
+}
+
+
+.progress-fill {
+    height: 100%;
+
+    width: 20%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--green)
+        );
+
+    transition:
+        width 600ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+}
+
+
+/* =====================================================
+   TRACK
+===================================================== */
+
+.carousel-window {
+    overflow: hidden;
+}
+
+
+.carousel-track {
+    display: flex;
+
+    transition:
+        transform
+        800ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+}
+
+
+.module-slide {
+    flex: 0 0 100%;
+
+    min-height: 620px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(400px, 1fr);
+
+    align-items: center;
+
+    padding: 80px;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.module-content {
+    max-width: 620px;
+}
+
+
+.module-label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 32px;
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+
+    color: var(--text-secondary);
+}
+
+
+.module-index {
+    color: var(--green);
+}
+
+
+.module-content h3 {
+    margin: 0;
+
+    font-size:
+        clamp(
+            3rem,
+            5vw,
+            5.2rem
+        );
+
+    line-height: 0.95;
+
+    letter-spacing: -0.055em;
+
+    color: var(--text-primary);
+}
+
+
+.module-content h3 span {
+    display: block;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--green)
+        );
+
+    background-clip: text;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.module-content p {
+    max-width: 520px;
+
+    margin-top: 32px;
+
+    font-size: 1.05rem;
+
+    line-height: 1.75;
+
+    color: var(--text-secondary);
+}
+
+
+/* =====================================================
+   TAGS
+===================================================== */
+
+.module-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 38px;
+}
+
+
+.module-tags span {
+    padding: 9px 14px;
+
+    border:
+        1px solid
+        var(--green-medium);
+
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+
+    color: var(--text-primary);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue-soft),
+            var(--green-soft)
+        );
+
+    transition:
+        transform 200ms ease,
+        border-color 200ms ease,
+        box-shadow 200ms ease;
+}
+
+
+.module-tags span:hover {
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--green);
+
+    box-shadow:
+        0 10px 30px
+        var(--green-soft);
+}
+
+
+/* =====================================================
+   VISUAL
+===================================================== */
+
+.module-visual {
+    position: relative;
+
+    min-height: 440px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.visual-glow {
+    position: absolute;
+
+    width: 330px;
+
+    height: 330px;
+
+    border-radius: 50%;
+
+    filter:
+        blur(90px);
+
+    opacity: 0.7;
+}
+
+
+/* =====================================================
+   BASE CARDS
+===================================================== */
+
+.finance-card,
+.stock-dashboard,
+.team-card,
+.api-window {
+    position: relative;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0, 0, 0, 0.22);
+}
+
+
+.finance-card::before,
+.stock-dashboard::before,
+.team-card::before,
+.api-window::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.28),
+            transparent
+        );
+}
+
+
+/* =====================================================
+   FINANCE
+===================================================== */
+
+.finance-visual .visual-glow {
+    background:
+        radial-gradient(
+            circle,
+            var(--blue-glow),
+            var(--green-glow),
+            transparent 70%
+        );
+}
+
+
+.finance-card {
+    width:
+        min(
+            420px,
+            90%
+        );
+
+    padding: 28px;
+
+    border:
+        1px solid
+        var(--blue-medium);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue-soft),
+            var(--green-soft),
+            var(--surface)
+        );
+
+    z-index: 2;
+}
+
+
+.card-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 0.78rem;
+
+    color: var(--text-secondary);
+}
+
+
+.card-status {
+    color: var(--green);
+
+    font-size: 0.65rem;
+}
+
+
+.finance-value {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-top: 50px;
+}
+
+
+.finance-value span {
+    font-size: 0.8rem;
+
+    color: var(--text-secondary);
+}
+
+
+.finance-value strong {
+    font-size: 2rem;
+
+    letter-spacing: -0.04em;
+
+    color: var(--text-primary);
+}
+
+
+.chart {
+    position: relative;
+
+    height: 150px;
+
+    margin-top: 35px;
+
+    border-bottom:
+        1px solid
+        var(--border-color);
+}
+
+
+.chart-bars {
+    position: absolute;
+
+    inset:
+        20px
+        0
+        0;
+
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+
+.chart-bars span {
+    width: 100%;
+
+    border-radius:
+        5px
+        5px
+        0
+        0;
+
+    background:
+        linear-gradient(
+            to top,
+            var(--blue),
+            var(--green)
+        );
+
+    box-shadow:
+        0 0 18px
+        var(--green-soft);
+}
+
+
+.chart-bars span:nth-child(1) {
+    height: 25%;
+}
+
+.chart-bars span:nth-child(2) {
+    height: 45%;
+}
+
+.chart-bars span:nth-child(3) {
+    height: 38%;
+}
+
+.chart-bars span:nth-child(4) {
+    height: 70%;
+}
+
+.chart-bars span:nth-child(5) {
+    height: 55%;
+}
+
+.chart-bars span:nth-child(6) {
+    height: 85%;
+}
+
+.chart-bars span:nth-child(7) {
+    height: 100%;
+}
+
+
+/* FLOATING CARDS */
+
+.floating-card {
+    position: absolute;
+
+    padding: 18px 20px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    z-index: 3;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.2);
+}
+
+
+.floating-card span {
+    font-size: 0.7rem;
+
+    color: var(--text-secondary);
+}
+
+
+.floating-card strong {
+    font-size: 1rem;
+}
+
+
+.revenue-card {
+    top: 40px;
+
+    right: 5%;
+
+    border:
+        1px solid
+        var(--green-medium);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-soft),
+            var(--surface)
+        );
+}
+
+
+.revenue-card strong {
+    color: var(--green);
+}
+
+
+.expense-card {
+    bottom: 25px;
+
+    left: 5%;
+
+    border:
+        1px solid
+        var(--blue-medium);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue-soft),
+            var(--surface)
+        );
+}
+
+
+.expense-card strong {
+    color: var(--blue);
+}
+
+
+/* =====================================================
+   STOCK
+===================================================== */
+
+.stock-visual .visual-glow {
+    background:
+        radial-gradient(
+            circle,
+            var(--green-glow),
+            var(--blue-soft),
+            transparent 70%
+        );
+}
+
+
+.stock-dashboard {
+    width:
+        min(
+            450px,
+            90%
+        );
+
+    padding: 28px;
+
+    border:
+        1px solid
+        var(--green-medium);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-soft),
+            var(--surface)
+        );
+
+    z-index: 2;
+}
+
+
+.stock-dashboard-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+
+    font-size: 0.85rem;
+}
+
+
+.stock-live {
+    padding: 6px 8px;
+
+    border-radius: 6px;
+
+    font-size: 0.6rem;
+
+    color: var(--green);
+
+    background:
+        var(--green-soft);
+}
+
+
+.stock-item {
+    display: grid;
+
+    grid-template-columns:
+        34px
+        1fr
+        100px;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px 0;
+
+    border-top:
+        1px solid
+        var(--border-color);
+}
+
+
+.stock-icon {
+    width: 28px;
+
+    height: 28px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        var(--green);
+
+    border-radius: 8px;
+
+    background:
+        var(--green-soft);
+
+    font-size: 0.55rem;
+
+    color: var(--green);
+}
+
+
+.stock-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.stock-info strong {
+    font-size: 0.8rem;
+}
+
+
+.stock-info span {
+    font-size: 0.7rem;
+
+    color: var(--text-secondary);
+}
+
+
+.stock-bar {
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background:
+        var(--border-color);
+}
+
+
+.stock-bar div {
+    height: 100%;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--green)
+        );
+
+    box-shadow:
+        0 0 14px
+        var(--green-medium);
+}
+
+
+.stock-floating {
+    position: absolute;
+
+    right: 0;
+
+    bottom: 20px;
+
+    padding: 18px;
+
+    border:
+        1px solid
+        var(--green-medium);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-soft),
+            var(--background)
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    z-index: 3;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.2);
+}
+
+
+.stock-floating span {
+    font-size: 0.65rem;
+
+    color: var(--text-secondary);
+}
+
+
+.stock-floating strong {
+    color: var(--green);
+}
+
+
+/* =====================================================
+   EMPLOYEES
+===================================================== */
+
+.employees-visual .visual-glow {
+    background:
+        radial-gradient(
+            circle,
+            var(--blue-glow),
+            var(--green-soft),
+            transparent 70%
+        );
+}
+
+
+.team-card {
+    width:
+        min(
+            450px,
+            90%
+        );
+
+    padding: 28px;
+
+    border:
+        1px solid
+        var(--blue-medium);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue-soft),
+            var(--surface)
+        );
+
+    z-index: 2;
+}
+
+
+.team-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+.team-header span {
+    font-size: 0.85rem;
+}
+
+
+.team-header strong {
+    font-size: 0.7rem;
+
+    color: var(--green);
+}
+
+
+.employee {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px 0;
+
+    border-top:
+        1px solid
+        var(--border-color);
+}
+
+
+.employee-avatar {
+    width: 42px;
+
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    font-size: 0.8rem;
+}
+
+
+.avatar-one {
+    border:
+        1px solid
+        var(--green);
+
+    color:
+        var(--green);
+
+    background:
+        var(--green-soft);
+}
+
+
+.avatar-two {
+    border:
+        1px solid
+        var(--blue);
+
+    color:
+        var(--blue);
+
+    background:
+        var(--blue-soft);
+}
+
+
+.avatar-three {
+    border:
+        1px solid
+        var(--green);
+
+    color:
+        var(--green);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-soft),
+            var(--blue-soft)
+        );
+}
+
+
+.employee div:nth-child(2) {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.employee strong {
+    font-size: 0.8rem;
+}
+
+
+.employee span {
+    font-size: 0.7rem;
+
+    color: var(--text-secondary);
+}
+
+
+.permission-dot {
+    width: 8px;
+
+    height: 8px;
+
+    margin-left: auto;
+
+    border-radius: 50%;
+
+    background:
+        var(--green);
+
+    box-shadow:
+        0 0 14px
+        var(--green);
+}
+
+
+/* =====================================================
+   SCORE
+===================================================== */
+
+.score-visual .visual-glow {
+    background:
+        radial-gradient(
+            circle,
+            var(--green-glow),
+            var(--blue-glow),
+            transparent 70%
+        );
+}
+
+
+.score-circle {
+    position: relative;
+
+    width: 330px;
+
+    height: 330px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            var(--green-soft),
+            var(--blue-soft) 60%,
+            transparent 75%
+        );
+
+    box-shadow:
+        0 0 100px
+        var(--green-soft);
+
+    z-index: 2;
+}
+
+
+.score-circle svg {
+    width: 100%;
+
+    height: 100%;
+
+    transform:
+        rotate(-90deg);
+}
+
+
+.score-bg,
+.score-progress {
+    fill: none;
+
+    stroke-width: 10;
+}
+
+
+.score-bg {
+    stroke:
+        var(--border-color);
+}
+
+
+.score-progress {
+    stroke:
+        url(#scoreGradient);
+
+    stroke-linecap: round;
+
+    stroke-dasharray: 503;
+
+    stroke-dashoffset: 75;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(39, 184, 95, 0.45)
+        );
+}
+
+
+.score-content {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.score-content span {
+    font-size: 0.6rem;
+
+    letter-spacing: 0.12em;
+
+    color:
+        var(--text-secondary);
+}
+
+
+.score-content strong {
+    margin: 8px 0;
+
+    font-size: 4rem;
+
+    letter-spacing: -0.05em;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--green)
+        );
+
+    background-clip: text;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.score-content small {
+    color:
+        var(--green);
+}
+
+
+.score-data-card {
+    position: absolute;
+
+    bottom: 15px;
+
+    right: 5%;
+
+    padding: 18px;
+
+    border:
+        1px solid
+        var(--green-medium);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-soft),
+            var(--background)
+        );
+
+    z-index: 3;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.2);
+}
+
+
+.score-data-card > span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 0.65rem;
+
+    color:
+        var(--text-secondary);
+}
+
+
+.score-data-card div {
+    display: flex;
+
+    gap: 10px;
+
+    align-items: end;
+}
+
+
+.score-data-card strong {
+    color:
+        var(--green);
+}
+
+
+/* =====================================================
+   API
+===================================================== */
+
+.api-visual .visual-glow {
+    background:
+        radial-gradient(
+            circle,
+            var(--blue-glow),
+            var(--green-soft),
+            transparent 70%
+        );
+}
+
+
+.api-window {
+    width:
+        min(
+            470px,
+            90%
+        );
+
+    border:
+        1px solid
+        var(--blue-medium);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue-soft),
+            var(--surface)
+        );
+
+    z-index: 2;
+
+    box-shadow:
+        0 30px 80px
+        var(--blue-soft);
+}
+
+
+.api-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px 18px;
+
+    border-bottom:
+        1px solid
+        var(--border-color);
+
+    font-size: 0.6rem;
+
+    letter-spacing: 0.1em;
+
+    color:
+        var(--text-secondary);
+}
+
+
+.api-dots {
+    display: flex;
+
+    gap: 5px;
+}
+
+
+.api-dots span {
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        var(--border-color);
+}
+
+
+.api-dots span:nth-child(1) {
+    background:
+        var(--green);
+}
+
+
+.api-dots span:nth-child(2) {
+    background:
+        var(--blue);
+}
+
+
+.code {
+    padding: 30px;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+    font-size: 0.8rem;
+
+    line-height: 1.8;
+}
+
+
+.code p {
+    margin: 0;
+}
+
+
+.code-method {
+    display: inline-block;
+
+    margin-right: 8px;
+
+    padding: 3px 7px;
+
+    border-radius: 5px;
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--green);
+}
+
+
+.code-url {
+    color:
+        var(--blue);
+}
+
+
+.code-line {
+    color:
+        var(--text-secondary);
+}
+
+
+.code-line span {
+    color:
+        var(--green);
+}
+
+
+.indent {
+    padding-left: 20px;
+}
+
+
+.double-indent {
+    padding-left: 40px;
+}
+
+
+.api-status {
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 4%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 14px;
+
+    border:
+        1px solid
+        var(--green-medium);
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-soft),
+            var(--background)
+        );
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.08em;
+
+    z-index: 3;
+}
+
+
+.api-status-dot {
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        var(--green);
+
+    box-shadow:
+        0 0 12px
+        var(--green);
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.carousel-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 22px 28px;
+
+    border-top:
+        1px solid
+        var(--border-color);
+}
+
+
+.carousel-controls {
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.carousel-button {
+    width: 44px;
+
+    height: 44px;
+
+    border:
+        1px solid
+        var(--border-color);
+
+    border-radius: 10px;
+
+    background:
+        var(--surface);
+
+    color:
+        var(--text-primary);
+
+    font-size: 1.1rem;
+
+    cursor: pointer;
+
+    transition:
+        transform 200ms ease,
+        border-color 200ms ease,
+        background 200ms ease;
+}
+
+
+.carousel-button:hover {
+    transform:
+        translateY(-2px);
+
+    border-color:
+        var(--green);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--green)
+        );
+
+    color: white;
+}
+
+
+.carousel-indicators {
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.indicator {
+    width: 28px;
+
+    height: 3px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background:
+        var(--border-color);
+
+    cursor: pointer;
+
+    transition:
+        width 300ms ease,
+        background 300ms ease;
+}
+
+
+.indicator.active {
+    width: 55px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--green)
+        );
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .module-slide {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+
+        padding: 60px 40px;
+    }
+
+
+    .module-visual {
+        min-height: 400px;
+    }
+
+
+    .module-content {
+        max-width: 100%;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .modules-section {
+        padding:
+            100px 20px;
+    }
+
+
+    .modules-header {
+        margin-bottom: 50px;
+    }
+
+
+    .carousel-top {
+        padding: 18px;
+    }
+
+
+    .carousel-progress {
+        width: 120px;
+    }
+
+
+    .module-slide {
+        padding: 50px 22px;
+
+        min-height: 720px;
+    }
+
+
+    .module-content h3 {
+        font-size: 3.2rem;
+    }
+
+
+    .module-content p {
+        font-size: 0.95rem;
+    }
+
+
+    .module-visual {
+        min-height: 330px;
+    }
+
+
+    .carousel-bottom {
+        padding: 18px;
+    }
+
+
+    .indicator {
+        width: 16px;
+    }
+
+
+    .indicator.active {
+        width: 30px;
+    }
+
+
+    .score-circle {
+        width: 260px;
+
+        height: 260px;
+    }
+
+
+    .floating-card {
+        transform:
+            scale(0.85);
+    }
+
+
+    .stock-item {
+        grid-template-columns:
+            30px
+            1fr;
+    }
+
+
+    .stock-bar {
+        display: none;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+
+        const track =
+            document.getElementById(
+                "carouselTrack"
+            );
+
+
+        const currentSlideElement =
+            document.getElementById(
+                "currentSlide"
+            );
+
+
+        const progressFill =
+            document.getElementById(
+                "progressFill"
+            );
+
+
+        const prevButton =
+            document.getElementById(
+                "prevButton"
+            );
+
+
+        const nextButton =
+            document.getElementById(
+                "nextButton"
+            );
+
+
+        const carousel =
+            document.getElementById(
+                "modulesCarousel"
+            );
+
+
+        const indicators =
+            document.querySelectorAll(
+                ".indicator"
+            );
+
+
+        const totalSlides =
+            document.querySelectorAll(
+                ".module-slide"
+            ).length;
+
+
+        let currentSlide = 0;
+
+        let autoplayInterval;
+
+
+        /* =============================================
+           UPDATE
+        ============================================= */
+
+        function updateCarousel() {
+
+            track.style.transform =
+                `translateX(
+                    -${currentSlide * 100}%
+                )`;
+
+
+            currentSlideElement.textContent =
+                String(
+                    currentSlide + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const progress =
+                (
+                    (currentSlide + 1)
+                    / totalSlides
+                )
+                * 100;
+
+
+            progressFill.style.width =
+                `${progress}%`;
+
+
+            indicators.forEach(
+                (
+                    indicator,
+                    index
+                ) => {
+
+                    indicator.classList.toggle(
+                        "active",
+                        index === currentSlide
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =============================================
+           NEXT
+        ============================================= */
+
+        function nextSlide() {
+
+            currentSlide =
+                (
+                    currentSlide + 1
+                )
+                % totalSlides;
+
+
+            updateCarousel();
+
+        }
+
+
+        /* =============================================
+           PREVIOUS
+        ============================================= */
+
+        function previousSlide() {
+
+            currentSlide =
+                (
+                    currentSlide
+                    - 1
+                    + totalSlides
+                )
+                % totalSlides;
+
+
+            updateCarousel();
+
+        }
+
+
+        /* =============================================
+           BUTTONS
+        ============================================= */
+
+        nextButton.addEventListener(
+            "click",
+            () => {
+
+                nextSlide();
+
+                restartAutoplay();
+
+            }
+        );
+
+
+        prevButton.addEventListener(
+            "click",
+            () => {
+
+                previousSlide();
+
+                restartAutoplay();
+
+            }
+        );
+
+
+        /* =============================================
+           INDICATORS
+        ============================================= */
+
+        indicators.forEach(
+            indicator => {
+
+                indicator.addEventListener(
+                    "click",
+                    () => {
+
+                        currentSlide =
+                            Number(
+                                indicator.dataset.slide
+                            );
+
+
+                        updateCarousel();
+
+                        restartAutoplay();
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =============================================
+           KEYBOARD
+        ============================================= */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key
+                    === "ArrowRight"
+                ) {
+
+                    nextSlide();
+
+                    restartAutoplay();
+
+                }
+
+
+                if (
+                    event.key
+                    === "ArrowLeft"
+                ) {
+
+                    previousSlide();
+
+                    restartAutoplay();
+
+                }
+
+            }
+        );
+
+
+        /* =============================================
+           AUTOPLAY
+        ============================================= */
+
+        function startAutoplay() {
+
+            stopAutoplay();
+
+
+            autoplayInterval =
+                setInterval(
+                    nextSlide,
+                    6500
+                );
+
+        }
+
+
+        function stopAutoplay() {
+
+            clearInterval(
+                autoplayInterval
+            );
+
+        }
+
+
+        function restartAutoplay() {
+
+            stopAutoplay();
+
+            startAutoplay();
+
+        }
+
+
+        /* PAUSA AO PASSAR O MOUSE */
+
+        carousel.addEventListener(
+            "mouseenter",
+            stopAutoplay
+        );
+
+
+        carousel.addEventListener(
+            "mouseleave",
+            startAutoplay
+        );
+
+
+        /* =============================================
+           TOUCH / SWIPE
+        ============================================= */
+
+        let touchStartX = 0;
+
+
+        carousel.addEventListener(
+            "touchstart",
+            event => {
+
+                touchStartX =
+                    event.touches[0].clientX;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        carousel.addEventListener(
+            "touchend",
+            event => {
+
+                const touchEndX =
+                    event.changedTouches[0]
+                        .clientX;
+
+
+                const difference =
+                    touchStartX
+                    - touchEndX;
+
+
+                if (
+                    Math.abs(
+                        difference
+                    )
+                    < 50
+                ) {
+                    return;
+                }
+
+
+                if (
+                    difference > 0
+                ) {
+
+                    nextSlide();
+
+                } else {
+
+                    previousSlide();
+
+                }
+
+
+                restartAutoplay();
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* =============================================
+           INIT
+        ============================================= */
+
+        updateCarousel();
+
+        startAutoplay();
+
+
+    }
+);
+
+</script>
+```
+
+      
+
+
+    </main>
+
+
+</body>
+</html>
