@@ -67,8 +67,8 @@ public class AuthService {
         loginRegisterRepository.save(register);
     }
 
-    @Transactional(noRollbackFor = {UserNotFoundException.class, InvalidCredentialsException.class})
     public LoginResponseDTO login(LoginRequestDTO dto,HttpServletRequest request,HttpServletResponse response){
+        Logger.debug("Fazendo login");
         User user = userRepository.findByEmail(dto.email()).orElseThrow(()->{
             registerLoginAttempt(
                     dto.email(),

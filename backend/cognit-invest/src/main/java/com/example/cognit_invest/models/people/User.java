@@ -4,6 +4,7 @@ import com.example.cognit_invest.enums.account.AccountStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
 @Document(collection = "users")
@@ -17,6 +18,11 @@ public class User {
     private String document;
     private String password;
     private AccountStatus status;
+
+    private BigDecimal totalBalance = BigDecimal.ZERO;
+
+    private Instant lastLogin;
+    private Instant lastLogout;
 
     private Instant createdAt;
     private Instant updatedAt;
@@ -40,6 +46,30 @@ public class User {
 
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
+    }
+
+    public Instant getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Instant lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public Instant getLastLogout() {
+        return lastLogout;
+    }
+
+    public void setLastLogout(Instant lastLogout) {
+        this.lastLogout = lastLogout;
+    }
+
+    public BigDecimal getTotalBalance() {
+        return totalBalance;
+    }
+
+    public void setTotalBalance(BigDecimal totalBalance) {
+        this.totalBalance = totalBalance;
     }
 
     public Instant getCreatedAt() {
