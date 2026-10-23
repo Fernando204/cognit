@@ -43,6 +43,7 @@ public class AuthController {
     public ResponseEntity<LoginResponseDTO> register(
             @RequestBody RegisterDTO dto
             ){
+        com.example.cognit_invest.services.internal.Logger.debug("cadastrando usuário" );
         return ResponseEntity.ok(
                 authService.register(dto)
         );
