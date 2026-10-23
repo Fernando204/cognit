@@ -2,7 +2,9 @@ package com.example.cognit_invest.services.finance;
 
 import com.example.cognit_invest.DTOs.finance.bankAccount.BankAccountRequestDTO;
 import com.example.cognit_invest.DTOs.finance.bankAccount.BankAccountResponseDTO;
+import com.example.cognit_invest.DTOs.finance.bankAccount.EditCreditDTO;
 import com.example.cognit_invest.components.SessionUser;
+import com.example.cognit_invest.exceptions.finance.BankAccountNotFoundException;
 import com.example.cognit_invest.exceptions.user.UserNotFoundException;
 import com.example.cognit_invest.models.finance.BankAccount;
 import com.example.cognit_invest.models.people.User;
@@ -53,6 +55,27 @@ public class BankAccountService {
         user.setUpdatedAt(Instant.now());
         userRepository.save(user);
         bankAccount = bankAccountRepository.save(bankAccount);
+        return BankAccountResponseDTO.fromEntity(bankAccount);
+    }
+
+    @Transactional
+    public BankAccountResponseDTO editCredit(
+            EditCreditDTO dto,
+            SessionUser sessionUser
+    ){
+        Logger.debug("Editando limites de credito");
+        if(!userRepository.existsById(sessionUser.id())) throw new UserNotFoundException();
+
+        BankAccount bankAccount = bankAccountRepository.findById(dto.accountId())
+                .orElseThrow(BankAccountNotFoundException::new);
+
+        bankAccount.setUseCredit(dto.useCredit());
+        bankAccount.setCreditLimit(dto.creditLimit());
+        bankAccount.setInvoiceClosing(dto.invoiceClosing());
+        bankAccount.setInvoiceDueDate(dto.invoiceDueDate());
+        bankAccount.setUpdatedAt(Instant.now());
+        bankAccountRepository.save(bankAccount);
+
         return BankAccountResponseDTO.fromEntity(bankAccount);
     }
 

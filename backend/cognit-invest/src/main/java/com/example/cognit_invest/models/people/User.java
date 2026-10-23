@@ -151,4 +151,14 @@ public class User {
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public void addToBalance(BigDecimal value){
+        totalBalance = totalBalance.add(value);
+        updatedAt = Instant.now();
+    }
+    public void removeFromBalance(BigDecimal value){
+        totalBalance = totalBalance.subtract(value);
+        updatedAt = Instant.now();
+    }
+
 }

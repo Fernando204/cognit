@@ -1,6 +1,7 @@
 package com.example.cognit_invest.models.finance;
 
 import com.example.cognit_invest.enums.finance.MovimentationType;
+import com.example.cognit_invest.enums.finance.PaymentWay;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,16 +19,21 @@ public class Movimentation {
     private String category;
     private String description;
     private String accountId;
+    private PaymentWay paymentWay;
 
     private Instant createdAt;
+    private Instant updatedAt;
+    private Instant deletedAt;
 
+    public Movimentation(){}
     public Movimentation(
             String accountId,
             String category,
             String description,
             MovimentationType type,
             String userId,
-            BigDecimal value
+            BigDecimal value,
+            PaymentWay paymentWay
     ) {
         this.accountId = accountId;
         this.category = category;
@@ -35,8 +41,34 @@ public class Movimentation {
         this.type = type;
         this.userId = userId;
         this.value = value;
+        this.paymentWay = paymentWay;
 
         this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
+
+    public Instant getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Instant deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public PaymentWay getPaymentWay() {
+        return paymentWay;
+    }
+
+    public void setPaymentWay(PaymentWay paymentWay) {
+        this.paymentWay = paymentWay;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getAccountId() {

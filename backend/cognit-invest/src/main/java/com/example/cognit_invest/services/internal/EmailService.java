@@ -22,7 +22,7 @@ public class EmailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message,true,"UTF-8");
 
-        String link = "https://api.horsecontrol.net/auth/confirm?token="+ token.getToken();
+        String link = "http://localhost:8080/auth/confirm?token="+ token.getToken();
 
         Context context = new Context();
         context.setVariable("confirmationLink",link);

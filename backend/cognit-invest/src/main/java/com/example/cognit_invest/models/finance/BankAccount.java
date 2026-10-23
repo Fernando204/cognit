@@ -1,6 +1,7 @@
 package com.example.cognit_invest.models.finance;
 
 import com.example.cognit_invest.enums.bankAccount.Bank;
+import com.example.cognit_invest.exceptions.finance.InsuficientCreditException;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -198,5 +199,25 @@ public class BankAccount {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public BigDecimal getAvailableCredit() {
+        return creditLimit.subtract(usedCredit);
+    }
+
+    public void consumeCredit(BigDecimal value){
+        if (value == null || value.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Value must be greater than zero");
+        if(!useCredit || getAvailableCredit().compareTo(value) < 0) throw new InsuficientCreditException();
+        usedCredit = usedCredit.add(value);
+        updatedAt = Instant.now();
+    }
+
+    public void addToBalance(BigDecimal value){
+        balance = balance.add(value);
+        updatedAt = Instant.now();
+    }
+    public void removeFromBalance(BigDecimal value){
+        balance = balance.subtract(value);
+        updatedAt = Instant.now();
     }
 }

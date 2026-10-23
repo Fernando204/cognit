@@ -2,6 +2,7 @@ package com.example.cognit_invest.controllers.finance.bankAccount;
 
 import com.example.cognit_invest.DTOs.finance.bankAccount.BankAccountRequestDTO;
 import com.example.cognit_invest.DTOs.finance.bankAccount.BankAccountResponseDTO;
+import com.example.cognit_invest.DTOs.finance.bankAccount.EditCreditDTO;
 import com.example.cognit_invest.components.SessionUser;
 import com.example.cognit_invest.services.finance.BankAccountService;
 import com.example.cognit_invest.services.internal.Logger;
@@ -28,6 +29,19 @@ public class BankAccountController {
         Logger.debug("Retornando contas bancarias");
         return ResponseEntity.ok(
                 bankAccountService.getAllAccounts(sessionUser)
+        );
+    }
+
+    @PatchMapping
+    public ResponseEntity<BankAccountResponseDTO> editCreditLimit(
+            @RequestBody EditCreditDTO dto,
+            @AuthenticationPrincipal SessionUser sessionUser
+            ){
+        return ResponseEntity.ok(
+                bankAccountService.editCredit(
+                        dto,
+                        sessionUser
+                )
         );
     }
 
