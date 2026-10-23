@@ -20,7 +20,7 @@ public class CorsConfig {
         config.setAllowedOrigins(List.of(
                  "http://localhost:5173", // Tirar comentário apenas para testes locais
                 "https://admin.horsecontrol.net",
-                "https://cognit-front.onrender.com/login")); // front
+                "https://cognit-front.onrender.com")); // front
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"));
         config.setAllowedHeaders(List.of("*"));
 
