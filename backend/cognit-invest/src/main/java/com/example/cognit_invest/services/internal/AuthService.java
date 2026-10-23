@@ -161,10 +161,10 @@ public class AuthService {
 
         Cookie cookie = new Cookie("AUTH_TOKEN", token);
         cookie.setHttpOnly(true);
-        cookie.setSecure(false);
+        cookie.setSecure(true);
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24);
-        cookie.setAttribute("SameSite", "lax");
+        cookie.setAttribute("SameSite", "none");
 
         response.addCookie(cookie);
     }
