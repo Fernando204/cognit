@@ -1,150 +1,369 @@
+```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Recuperação de Senha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Cognit | Recuperação de senha</title>
 </head>
 
 <body style="
     margin:0;
-    padding:40px 0;
-    background:#0F1723;
+    padding:0;
+    background-color:#F5F3EC;
     font-family:Arial,Helvetica,sans-serif;
+    -webkit-font-smoothing:antialiased;
 ">
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+       border="0" style="background-color:#F5F3EC;">
     <tr>
-        <td align="center">
+        <td align="center" style="padding:36px 16px;">
 
-            <table role="presentation"
-                   width="600"
-                   cellpadding="0"
-                   cellspacing="0"
+            <!-- Cartão principal -->
+            <table role="presentation" width="100%" cellpadding="0"
+                   cellspacing="0" border="0"
                    style="
-            background:#182231;
-            border:1px solid #263448;
-            border-radius:12px;
-            overflow:hidden;
-       ">
+                       max-width:560px;
+                       background-color:#FFFEFB;
+                       border:1px solid #E7E4DC;
+                       border-radius:22px;
+                       overflow:hidden;
+                   ">
 
-                <!-- Cabeçalho -->
+                <!-- Cabeçalho da marca -->
                 <tr>
-                    <td align="center"
-                        style="
-                padding:32px;
-                border-bottom:1px solid #263448;
-            ">
+                    <td style="padding:30px 34px 25px;">
+
+                        <table role="presentation" cellpadding="0"
+                               cellspacing="0" border="0">
+                            <tr>
+                                <td valign="middle"
+                                    style="
+                                        color:#101E35;
+                                        font-size:23px;
+                                        font-weight:bold;
+                                        letter-spacing:-0.7px;
+                                    ">
+                                    Cognit
+                                </td>
+
+                                <td valign="middle" style="padding-left:8px;">
+                                    <table role="presentation" cellpadding="0"
+                                           cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="
+                                                width:7px;
+                                                height:7px;
+                                                background-color:#16C784;
+                                                border-radius:50%;
+                                                font-size:0;
+                                                line-height:0;
+                                            ">&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Linha de identidade azul e verde -->
+                        <table role="presentation" width="100%" cellpadding="0"
+                               cellspacing="0" border="0"
+                               style="margin-top:23px;">
+                            <tr>
+                                <td style="
+                                    height:2px;
+                                    background-color:#E4E9E8;
+                                    font-size:0;
+                                    line-height:2px;
+                                ">&nbsp;</td>
+                                <td width="48" style="
+                                    height:2px;
+                                    background-color:#0866E8;
+                                    font-size:0;
+                                    line-height:2px;
+                                ">&nbsp;</td>
+                                <td width="24" style="
+                                    height:2px;
+                                    background-color:#12C9AD;
+                                    font-size:0;
+                                    line-height:2px;
+                                ">&nbsp;</td>
+                                <td width="18" style="
+                                    height:2px;
+                                    background-color:#16C784;
+                                    font-size:0;
+                                    line-height:2px;
+                                ">&nbsp;</td>
+                            </tr>
+                        </table>
+
+                        <p style="
+                            margin:27px 0 9px;
+                            color:#2879CB;
+                            font-size:11px;
+                            font-weight:bold;
+                            letter-spacing:1.5px;
+                            text-transform:uppercase;
+                        ">
+                            SEGURANÇA DA CONTA
+                        </p>
 
                         <h1 style="
-                margin:0;
-                color:#FFFFFF;
-                font-size:28px;
-                font-weight:bold;
-            ">
-                            Horse Control
+                            margin:0;
+                            color:#101E35;
+                            font-size:29px;
+                            line-height:36px;
+                            font-weight:bold;
+                            letter-spacing:-1px;
+                        ">
+                            Recuperação de senha
                         </h1>
 
                         <p style="
-                margin:8px 0 0;
-                color:#8CA3BE;
-                font-size:15px;
-            ">
-                            Recuperação de Senha
+                            margin:12px 0 0;
+                            color:#65748B;
+                            font-size:14px;
+                            line-height:23px;
+                        ">
+                            Vamos ajudar você a voltar à sua conta.
                         </p>
 
                     </td>
                 </tr>
 
-                <!-- Corpo -->
+                <!-- Conteúdo -->
                 <tr>
-                    <td style="padding:40px;">
+                    <td style="padding:8px 34px 34px;">
 
                         <p style="
-                color:#DCE6F3;
-                font-size:16px;
-                line-height:28px;
-                margin-top:0;
-            ">
-                            Olá,
+                            margin:0 0 14px;
+                            color:#101E35;
+                            font-size:15px;
+                            line-height:25px;
+                        ">
+                            Olá!
                         </p>
 
                         <p style="
-                color:#AAB8CC;
-                font-size:16px;
-                line-height:28px;
-            ">
-                            Recebemos uma solicitação para redefinir a senha da sua conta no
-                            <strong style="color:#FFFFFF;">Horse Control</strong>.
+                            margin:0 0 14px;
+                            color:#65748B;
+                            font-size:14px;
+                            line-height:25px;
+                        ">
+                            Recebemos uma solicitação para redefinir a senha
+                            da sua conta no
+                            <strong style="color:#101E35;">Cognit</strong>.
                         </p>
 
                         <p style="
-                color:#AAB8CC;
-                font-size:16px;
-                line-height:28px;
-            ">
-                            Utilize o código abaixo para continuar:
+                            margin:0 0 23px;
+                            color:#65748B;
+                            font-size:14px;
+                            line-height:25px;
+                        ">
+                            Para confirmar sua identidade, utilize o código abaixo.
                         </p>
 
-                        <!-- Código -->
-
-                        <table width="100%" cellpadding="0" cellspacing="0">
+                        <!-- Área do código -->
+                        <table role="presentation" width="100%" cellpadding="0"
+                               cellspacing="0" border="0"
+                               style="
+                                   background-color:#F3F6F4;
+                                   background-image:linear-gradient(
+                                       120deg,
+                                       #F0F5FC 0%,
+                                       #F4F7F5 55%,
+                                       #EDF8F1 100%
+                                   );
+                                   border:1px solid #DCE7E6;
+                                   border-radius:17px;
+                               ">
                             <tr>
-                                <td align="center">
+                                <td align="center" style="padding:25px 15px 23px;">
 
-                                    <div style="
-    display:inline-block;
-    padding:18px 36px;
-    background:#0F1723;
-    border:1px solid #C89A4A;
-    border-radius:10px;
-    color:#D6A85A;
-    font-size:34px;
-    font-weight:bold;
-    letter-spacing:10px;"
-                                         th:text="${code}">
+                                    <p style="
+                                        margin:0 0 13px;
+                                        color:#65748B;
+                                        font-size:11px;
+                                        line-height:17px;
+                                        font-weight:bold;
+                                        letter-spacing:1.5px;
+                                    ">
+                                        SEU CÓDIGO DE VERIFICAÇÃO
+                                    </p>
+
+                                    <p th:text="${code}" style="
+                                        margin:0;
+                                        color:#1269D9;
+                                        font-size:35px;
+                                        line-height:45px;
+                                        font-weight:bold;
+                                        letter-spacing:8px;
+                                    ">
                                         000000
-                                    </div>
+                                    </p>
+
+                                    <!-- Pequeno detalhe em gradiente -->
+                                    <table role="presentation" cellpadding="0"
+                                           cellspacing="0" border="0"
+                                           style="margin-top:16px;">
+                                        <tr>
+                                            <td width="23" style="
+                                                height:3px;
+                                                background-color:#0866E8;
+                                                font-size:0;
+                                                line-height:3px;
+                                            ">&nbsp;</td>
+                                            <td width="23" style="
+                                                height:3px;
+                                                background-color:#0DBCB9;
+                                                font-size:0;
+                                                line-height:3px;
+                                            ">&nbsp;</td>
+                                            <td width="23" style="
+                                                height:3px;
+                                                background-color:#16C784;
+                                                font-size:0;
+                                                line-height:3px;
+                                            ">&nbsp;</td>
+                                        </tr>
+                                    </table>
+
+                                    <p style="
+                                        margin:13px 0 0;
+                                        color:#8290A3;
+                                        font-size:12px;
+                                        line-height:19px;
+                                    ">
+                                        Digite o código na tela de recuperação.
+                                    </p>
 
                                 </td>
                             </tr>
                         </table>
 
-                        <p style="
-                margin-top:35px;
-                color:#AAB8CC;
-                font-size:15px;
-                line-height:26px;
-            ">
-                            Este código é válido por
-                            <strong style="color:#FFFFFF;">30 minutos</strong>.
-                        </p>
+                        <!-- Aviso de validade -->
+                        <table role="presentation" width="100%" cellpadding="0"
+                               cellspacing="0" border="0"
+                               style="margin-top:24px;">
+                            <tr>
+                                <td width="4" valign="top">
+                                    <table role="presentation" cellpadding="0"
+                                           cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="
+                                                width:3px;
+                                                height:43px;
+                                                background-color:#16C784;
+                                                font-size:0;
+                                                line-height:0;
+                                            ">&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <td valign="top" style="padding-left:13px;">
+                                    <p style="
+                                        margin:0;
+                                        color:#65748B;
+                                        font-size:13px;
+                                        line-height:23px;
+                                    ">
+                                        Seu código é válido por
+                                        <strong style="color:#101E35;">
+                                            30 minutos
+                                        </strong>.
+                                        Após esse prazo, solicite um novo código.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
 
                         <p style="
-                color:#AAB8CC;
-                font-size:15px;
-                line-height:26px;
-            ">
-                            Caso você não tenha solicitado esta recuperação de senha,
-                            basta ignorar este e-mail. Nenhuma alteração será realizada
-                            em sua conta.
+                            margin:25px 0 0;
+                            color:#8290A3;
+                            font-size:13px;
+                            line-height:23px;
+                        ">
+                            Se você não solicitou a recuperação de senha,
+                            pode ignorar esta mensagem. Nenhuma alteração
+                            será feita na sua conta.
                         </p>
 
                     </td>
                 </tr>
 
                 <!-- Rodapé -->
-
                 <tr>
-                    <td align="center"
-                        style="
-                padding:24px;
-                border-top:1px solid #263448;
-                color:#70829A;
-                font-size:13px;
-            ">
+                    <td align="center" style="
+                        padding:23px 28px 25px;
+                        background-color:#FAF9F5;
+                        border-top:1px solid #EBE8E0;
+                    ">
 
-                        © 2026 Horse Control<br>
-                        Sistema de Gestão para Haras
+                        <p style="
+                            margin:0;
+                            color:#101E35;
+                            font-size:13px;
+                            font-weight:bold;
+                            letter-spacing:-0.2px;
+                        ">
+                            Cognit
+                        </p>
+
+                        <p style="
+                            margin:7px 0 0;
+                            color:#65748B;
+                            font-size:12px;
+                            line-height:20px;
+                        ">
+                        </p>
+
+                        <!-- Assinatura colorida -->
+                        <table role="presentation" cellpadding="0"
+                               cellspacing="0" border="0"
+                               style="margin:13px auto 0;">
+                            <tr>
+                                <td width="18" style="
+                                    height:2px;
+                                    background-color:#0866E8;
+                                    font-size:0;
+                                    line-height:2px;
+                                ">&nbsp;</td>
+                                <td width="18" style="
+                                    height:2px;
+                                    background-color:#0DBCB9;
+                                    font-size:0;
+                                    line-height:2px;
+                                ">&nbsp;</td>
+                                <td width="18" style="
+                                    height:2px;
+                                    background-color:#16C784;
+                                    font-size:0;
+                                    line-height:2px;
+                                ">&nbsp;</td>
+                            </tr>
+                        </table>
+
+                        <p style="
+                            margin:15px 0 0;
+                            color:#A0A6AD;
+                            font-size:11px;
+                            line-height:18px;
+                        ">
+                            © 2026 Cognit. Todos os direitos reservados.
+                        </p>
+
+                        <p style="
+                            margin:4px 0 0;
+                            color:#A0A6AD;
+                            font-size:10px;
+                            line-height:17px;
+                        ">
+                            Mensagem automática. Não responda a este e-mail.
+                        </p>
 
                     </td>
                 </tr>
@@ -157,3 +376,4 @@
 
 </body>
 </html>
+```

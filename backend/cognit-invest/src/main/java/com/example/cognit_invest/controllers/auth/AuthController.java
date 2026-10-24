@@ -1,5 +1,6 @@
 package com.example.cognit_invest.controllers.auth;
 
+import com.example.cognit_invest.DTOs.auth.ChangePasswordDTO;
 import com.example.cognit_invest.DTOs.auth.LoginRequestDTO;
 import com.example.cognit_invest.DTOs.auth.LoginResponseDTO;
 import com.example.cognit_invest.DTOs.auth.RegisterDTO;
@@ -79,5 +80,27 @@ public class AuthController {
         cookie.setAttribute("SameSite", "lax");
         response.addCookie(cookie);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/recover")
+    public ResponseEntity<Void> recoverPasswordRequest(@RequestBody String email){
+        Logger.debug("iniciando recuperação de senha para o e-mail: "+email);
+        authService.recoverRequest(email);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/recover/confirm")
+    public ResponseEntity<Void> confirmRecoverToken(@RequestBody String code) {
+        authService.confirmRecoverToken(code);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/recover/change-password")
+    public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordDTO dto) {
+        authService.changePassword(
+                dto.code(),
+                dto.email(),
+                dto.password()
+        );
+
+        return ResponseEntity.ok().build();
     }
 }

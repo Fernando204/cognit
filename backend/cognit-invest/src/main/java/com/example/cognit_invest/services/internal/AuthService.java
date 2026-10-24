@@ -6,11 +6,14 @@ import com.example.cognit_invest.DTOs.auth.RegisterDTO;
 import com.example.cognit_invest.enums.account.AccountStatus;
 import com.example.cognit_invest.enums.auth.LoginStatus;
 import com.example.cognit_invest.enums.auth.TokenType;
+import com.example.cognit_invest.exceptions.auth.InvalidTokenException;
 import com.example.cognit_invest.exceptions.user.*;
 import com.example.cognit_invest.models.auth.LoginRegister;
+import com.example.cognit_invest.models.auth.RecoverToken;
 import com.example.cognit_invest.models.auth.Token;
 import com.example.cognit_invest.models.people.User;
 import com.example.cognit_invest.repositories.auth.LoginRegisterRepository;
+import com.example.cognit_invest.repositories.auth.RecoverTokenRepository;
 import com.example.cognit_invest.repositories.auth.TokenRepository;
 import com.example.cognit_invest.repositories.auth.UserRepository;
 import jakarta.servlet.http.Cookie;
@@ -22,6 +25,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Service
@@ -33,19 +38,26 @@ public class AuthService {
     private final UserRepository userRepository;
     private final LoginRegisterRepository loginRegisterRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RecoverTokenRepository recoverTokenRepository;
+    private final SecureRandom random = new SecureRandom();
 
     public AuthService(
             TokenRepository tokenRepository,
             EmailService emailService,
             JwtService jwtService,
             PasswordEncoder passwordEncoder,
-            LoginRegisterRepository loginRegisterRepository, UserRepository userRepository) {
+            LoginRegisterRepository loginRegisterRepository,
+            UserRepository userRepository,
+            RecoverTokenRepository recoverTokenRepository
+    ) {
         this.loginRegisterRepository = loginRegisterRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.emailService = emailService;
         this.tokenRepository = tokenRepository;
+        this.recoverTokenRepository = recoverTokenRepository;
+
     }
 
     @Transactional
@@ -154,6 +166,53 @@ public class AuthService {
 
         return html;
     }
+
+    @Transactional
+    public void recoverRequest(
+            String email
+    ){
+        User user = userRepository.findByEmail(email).orElse(null);
+        if(user == null) {
+            Logger.debug("usuário não encontrado: "+email);
+            return;
+        }
+
+        Logger.warn("Requisição para trocar senha de "+user.getName());
+
+        recoverTokenRepository.deleteAllByUserId(user.getId());
+        RecoverToken recoverToken = recoverTokenRepository.save(
+                new RecoverToken(
+                        String.format("%06d", random.nextInt(1_000_000)),
+                        user.getEmail(),
+                        user.getId()
+                )
+        );
+        try {
+            emailService.sendRecoverEmail(email, recoverToken.getCode());
+        }catch (Exception e){
+            recoverTokenRepository.delete(recoverToken);
+            e.printStackTrace();
+        }
+    }
+
+    public void confirmRecoverToken(String code){
+        RecoverToken recoverToken = recoverTokenRepository.findByCode(code).orElseThrow(InvalidTokenException::new);
+        if(recoverToken.getExpiresAt().isBefore(Instant.now())) throw new InvalidTokenException();
+    }
+
+    @Transactional
+    public void changePassword(String code,String email,String password){
+        RecoverToken recoverToken = recoverTokenRepository.findByCode(code).orElseThrow(InvalidTokenException::new);
+        if(recoverToken.getExpiresAt().isBefore(Instant.now().now())) throw new InvalidTokenException();
+
+        User user = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setUpdatedAt(Instant.now().now());
+        userRepository.save(user);
+
+        recoverTokenRepository.delete(recoverToken);
+    }
+
 
 
     private void appendAuthCookie(HttpServletResponse response, User user) {
