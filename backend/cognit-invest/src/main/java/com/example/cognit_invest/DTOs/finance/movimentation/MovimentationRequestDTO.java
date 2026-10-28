@@ -1,5 +1,6 @@
 package com.example.cognit_invest.DTOs.finance.movimentation;
 
+import com.example.cognit_invest.enums.finance.MovimentationStatus;
 import com.example.cognit_invest.enums.finance.MovimentationType;
 import com.example.cognit_invest.enums.finance.PaymentWay;
 import com.example.cognit_invest.models.finance.Movimentation;

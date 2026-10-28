@@ -1,5 +1,6 @@
 package com.example.cognit_invest.models.finance;
 
+import com.example.cognit_invest.enums.finance.MovimentationStatus;
 import com.example.cognit_invest.enums.finance.MovimentationType;
 import com.example.cognit_invest.enums.finance.PaymentWay;
 import org.springframework.data.annotation.Id;
@@ -20,6 +21,7 @@ public class Movimentation {
     private String description;
     private String accountId;
     private PaymentWay paymentWay;
+    private MovimentationStatus status;
 
     private Instant createdAt;
     private Instant updatedAt;
@@ -45,6 +47,14 @@ public class Movimentation {
 
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
+    }
+
+    public MovimentationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(MovimentationStatus status) {
+        this.status = status;
     }
 
     public Instant getDeletedAt() {

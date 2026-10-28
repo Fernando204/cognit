@@ -4,6 +4,7 @@ import com.example.cognit_invest.DTOs.finance.movimentation.ConfirmMovimentation
 import com.example.cognit_invest.DTOs.finance.movimentation.MovimentationRequestDTO;
 import com.example.cognit_invest.DTOs.finance.movimentation.MovimentationResponseDTO;
 import com.example.cognit_invest.components.SessionUser;
+import com.example.cognit_invest.enums.finance.MovimentationStatus;
 import com.example.cognit_invest.enums.finance.MovimentationType;
 import com.example.cognit_invest.enums.finance.PaymentWay;
 import com.example.cognit_invest.exceptions.finance.BankAccountNotFoundException;
@@ -11,6 +12,7 @@ import com.example.cognit_invest.exceptions.finance.ConfirmedMovimentationExcept
 import com.example.cognit_invest.exceptions.finance.MovimentationNotFoundException;
 import com.example.cognit_invest.exceptions.user.UserNotFoundException;
 import com.example.cognit_invest.models.finance.BankAccount;
+import com.example.cognit_invest.models.finance.FixedMovimentation;
 import com.example.cognit_invest.models.finance.Movimentation;
 import com.example.cognit_invest.models.people.User;
 import com.example.cognit_invest.repositories.auth.UserRepository;
@@ -53,6 +55,7 @@ public class MovimentationService {
         );
 
         if(movimentation.getPaymentWay() != PaymentWay.PENDENTE){
+            movimentation.setStatus(MovimentationStatus.CONFIRMADA);
 
             if(movimentation.getType() == MovimentationType.ENTRY){
                 bankAccount.addToBalance(movimentation.getValue());
@@ -68,12 +71,30 @@ public class MovimentationService {
                 }
             }
 
+        }else {
+            movimentation.setStatus(MovimentationStatus.PENDENTE);
         }
 
         movimentation = movimentationRepository.save(movimentation);
         userRepository.save(user);
         bankAccountRepository.save(bankAccount);
 
+        return MovimentationResponseDTO.fromEntity(movimentation);
+    }
+
+    public MovimentationResponseDTO saveMovimentation(FixedMovimentation fm){
+
+        Movimentation movimentation = new Movimentation(
+                fm.getAccountId(),
+                fm.getCategory(),
+                fm.getDescription(),
+                fm.getType(),
+                fm.getUserId(),
+                fm.getValue(),
+                PaymentWay.PENDENTE
+        );
+        movimentation.setStatus(MovimentationStatus.PENDENTE);
+        movimentation = movimentationRepository.save(movimentation);
         return MovimentationResponseDTO.fromEntity(movimentation);
     }
 
@@ -85,10 +106,11 @@ public class MovimentationService {
         User user = userRepository.findById(sessionUser.id()).orElseThrow(UserNotFoundException::new);
 
         Movimentation movimentation = movimentationRepository.findById(dto.movimentationId()).orElseThrow(MovimentationNotFoundException::new);
-        if(movimentation.getPaymentWay() != PaymentWay.PENDENTE) throw new ConfirmedMovimentationException();
+        if(movimentation.getPaymentWay() != PaymentWay.PENDENTE || movimentation.getStatus() != MovimentationStatus.PENDENTE) throw new ConfirmedMovimentationException();
         BankAccount bankAccount = bankAccountRepository.findById(movimentation.getAccountId()).orElseThrow(BankAccountNotFoundException::new);
 
         movimentation.setPaymentWay(dto.paymentWay());
+        movimentation.setStatus(MovimentationStatus.CONFIRMADA);
         movimentation.setUpdatedAt(Instant.now());
 
         if(movimentation.getType() == MovimentationType.ENTRY){

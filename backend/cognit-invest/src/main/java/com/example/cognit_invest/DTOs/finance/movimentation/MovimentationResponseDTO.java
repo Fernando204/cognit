@@ -1,5 +1,6 @@
 package com.example.cognit_invest.DTOs.finance.movimentation;
 
+import com.example.cognit_invest.enums.finance.MovimentationStatus;
 import com.example.cognit_invest.enums.finance.MovimentationType;
 import com.example.cognit_invest.enums.finance.PaymentWay;
 import com.example.cognit_invest.models.finance.Movimentation;
@@ -14,11 +15,13 @@ public record MovimentationResponseDTO(
         String category,
         String description,
         MovimentationType type,
+        MovimentationStatus status,
         BigDecimal value,
         PaymentWay paymentWay,
         Instant createdAt,
         Instant updatedAt
 ) {
+
 
     public static MovimentationResponseDTO fromEntity(Movimentation movimentation) {
         return new MovimentationResponseDTO(
@@ -28,6 +31,7 @@ public record MovimentationResponseDTO(
                 movimentation.getCategory(),
                 movimentation.getDescription(),
                 movimentation.getType(),
+                movimentation.getStatus(),
                 movimentation.getValue(),
                 movimentation.getPaymentWay(),
                 movimentation.getCreatedAt(),
